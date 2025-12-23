@@ -1,0 +1,3 @@
+#test文件忽略
+.test/
+*/.test/

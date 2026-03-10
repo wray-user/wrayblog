@@ -1,0 +1,36 @@
+.container {
+    width: 100%;
+    border: 0px solid #ccc;
+    border-radius: 0px;
+    overflow: hidden;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+.image {
+    /* 核心：占满整个屏幕 */
+    width: 100vw;    /* 宽度=屏幕宽度 */
+    height: 100vh;   /* 高度=屏幕高度 */
+    /* 辅助：保证图片等比铺满，超出部分裁剪 */
+    /* object-fit: cover; */
+    /* 可选：去掉默认边距，避免屏幕边缘留白 */
+    position: fixed; /* 固定定位，滚动页面时图片也不移动 */
+    top: 0;
+    left: 0;
+    z-index: -1;     /* 把图片放到底层，不遮挡其他内容 */
+}
+
+.video {
+    object-fit: fill;   
+}
+
+.title {
+    margin: 0 0 10px 0;
+    padding: 20px 20px 0;
+    color: #333;
+}
+
+.content {
+    padding: 0 20px 20px;
+    color: #666;
+}

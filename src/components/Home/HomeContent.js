@@ -85,10 +85,23 @@ const TECH_TOPIC_ITEMS = [
 ];
 
 const TECH_TOPIC_VISIBLE_COUNT = 14;
+const TECH_KIND_TAG_PREFIX = '__wray_tech_kind:';
+const NOTE_ORDER_TAG_PREFIX = '__wray_note_order:';
 
 const getCommentId = (comment) => comment._id || comment.id;
 const getPostTopic = (post) =>
   post.categorySlug === 'tech' ? post.techTopic || post.subcategory || post.topic || 'Python' : '';
+const getPostTags = (post) => (Array.isArray(post?.tags) ? post.tags : []);
+const isSystemTag = (tag) => String(tag || '').startsWith('__wray_');
+const getTagTechKind = (post) => {
+  const tag = getPostTags(post).find((item) => String(item).startsWith(TECH_KIND_TAG_PREFIX));
+  return tag ? String(tag).slice(TECH_KIND_TAG_PREFIX.length) : '';
+};
+const getTagNoteOrder = (post) => {
+  const tag = getPostTags(post).find((item) => String(item).startsWith(NOTE_ORDER_TAG_PREFIX));
+  const value = tag ? Number(String(tag).slice(NOTE_ORDER_TAG_PREFIX.length)) : NaN;
+  return Number.isFinite(value) ? value : null;
+};
 
 const postMatchesTopic = (post, topic) => {
   if (!topic) {
@@ -103,13 +116,25 @@ const normalizeTechKind = (value) =>
     ? 'note'
     : 'question';
 
-const getPostTechKind = (post) => normalizeTechKind(post?.techKind || post?.techType || post?.articleType);
+const getPostTechKind = (post) =>
+  normalizeTechKind(getTagTechKind(post) || post?.techKind || post?.techType || post?.articleType);
+
+const getPostNoteOrder = (post) => {
+  const tagOrder = getTagNoteOrder(post);
+
+  if (tagOrder !== null) {
+    return tagOrder;
+  }
+
+  const value = Number(post?.noteOrder);
+  return Number.isFinite(value) ? value : Number.MAX_SAFE_INTEGER;
+};
 
 const sortTechPostsByKind = (posts, kind) =>
   [...posts].sort((a, b) => {
     if (kind === 'note') {
-      const orderA = Number.isFinite(Number(a.noteOrder)) ? Number(a.noteOrder) : Number.MAX_SAFE_INTEGER;
-      const orderB = Number.isFinite(Number(b.noteOrder)) ? Number(b.noteOrder) : Number.MAX_SAFE_INTEGER;
+      const orderA = getPostNoteOrder(a);
+      const orderB = getPostNoteOrder(b);
 
       if (orderA !== orderB) {
         return orderA - orderB;
@@ -1971,7 +1996,9 @@ const getTagItems = (posts, fallbackTags) => {
 
   posts.forEach((post) => {
     (post.tags || []).forEach((tag) => {
-      tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+      if (!isSystemTag(tag)) {
+        tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+      }
     });
   });
 

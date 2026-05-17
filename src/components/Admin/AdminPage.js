@@ -263,6 +263,18 @@ const estimateReadTime = (content) => {
 
 const contentToMarkdown = (content) => (Array.isArray(content) ? content.join('\n\n') : String(content || ''));
 
+const TECH_KIND_TAG_PREFIX = '__wray_tech_kind:';
+const NOTE_ORDER_TAG_PREFIX = '__wray_note_order:';
+const isSystemTag = (tag) => String(tag || '').startsWith('__wray_');
+const getTagTechKind = (tags) => {
+  const tag = (Array.isArray(tags) ? tags : []).find((item) => String(item).startsWith(TECH_KIND_TAG_PREFIX));
+  return tag ? String(tag).slice(TECH_KIND_TAG_PREFIX.length) : '';
+};
+const getTagNoteOrder = (tags) => {
+  const tag = (Array.isArray(tags) ? tags : []).find((item) => String(item).startsWith(NOTE_ORDER_TAG_PREFIX));
+  const value = tag ? Number(String(tag).slice(NOTE_ORDER_TAG_PREFIX.length)) : NaN;
+  return Number.isFinite(value) ? value : 0;
+};
 const normalizeTechKind = (value) =>
   String(value || '').trim().toLowerCase() === 'note' || String(value || '').trim() === '\u7b14\u8bb0'
     ? 'note'
@@ -298,9 +310,11 @@ const postToForm = (post) => ({
   category: post.category || CATEGORY_OPTIONS[1].name,
   categorySlug: post.categorySlug || CATEGORY_OPTIONS[1].slug,
   techTopic: post.techTopic || post.subcategory || TECH_TOPIC_OPTIONS[0],
-  techKind: normalizeTechKind(post.techKind || post.techType || post.articleType),
-  noteOrder: Number(post.noteOrder) || 0,
-  tagsText: Array.isArray(post.tags) ? post.tags.join(', ') : '',
+  techKind: normalizeTechKind(getTagTechKind(post.tags) || post.techKind || post.techType || post.articleType),
+  noteOrder: getTagTechKind(post.tags)
+    ? getTagNoteOrder(post.tags)
+    : Number(post.noteOrder) || getTagNoteOrder(post.tags),
+  tagsText: Array.isArray(post.tags) ? post.tags.filter((tag) => !isSystemTag(tag)).join(', ') : '',
   content: contentToMarkdown(post.content),
   date: post.date || currentMinute(),
   readTime: post.readTime || '3 min',
@@ -332,9 +346,19 @@ const formToPayload = (form) => ({
   techKind: form.categorySlug === 'tech' ? normalizeTechKind(form.techKind) : 'question',
   noteOrder: form.categorySlug === 'tech' && normalizeTechKind(form.techKind) === 'note' ? Number(form.noteOrder) || 0 : 0,
   tags: form.tagsText
-    .split(/[,?\s]+/)
+    .split(/[,，\s]+/)
     .map((tag) => tag.trim())
-    .filter(Boolean),
+    .filter((tag) => tag && !isSystemTag(tag))
+    .concat(
+      form.categorySlug === 'tech'
+        ? [
+            `${TECH_KIND_TAG_PREFIX}${normalizeTechKind(form.techKind)}`,
+            ...(normalizeTechKind(form.techKind) === 'note'
+              ? [`${NOTE_ORDER_TAG_PREFIX}${Number(form.noteOrder) || 0}`]
+              : []),
+          ]
+        : [],
+    ),
   content: form.content,
   date: form.date || currentMinute(),
   readTime: estimateReadTime(form.content),

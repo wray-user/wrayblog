@@ -25,12 +25,16 @@ const createStatItems = (stats) => [
   { label: '访问', value: formatCount(stats.visits) },
 ];
 
+const isSystemTag = (tag) => String(tag || '').startsWith('__wray_');
+
 const getTagItems = (posts, fallbackTags) => {
   const tagMap = new Map();
 
   posts.forEach((post) => {
     (post.tags || []).forEach((tag) => {
-      tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+      if (!isSystemTag(tag)) {
+        tagMap.set(tag, (tagMap.get(tag) || 0) + 1);
+      }
     });
   });
 

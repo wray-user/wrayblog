@@ -47,10 +47,12 @@ const getPostHref = (post) => {
   return `#/post/${post.slug}`;
 };
 
+const isSystemTag = (tag) => String(tag || '').startsWith('__wray_');
+
 const PostList = ({ posts }) => (
   <div className={styles.postList}>
     {posts.map((post) => {
-      const tags = Array.isArray(post.tags) ? post.tags : [];
+      const tags = Array.isArray(post.tags) ? post.tags.filter((tag) => !isSystemTag(tag)) : [];
       const characterCount = getCharacterCount(post);
       const authorName = post.authorName || 'Wray';
       const authorAvatar = post.authorAvatar || '/icon/Mammon.png';

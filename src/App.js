@@ -59,8 +59,10 @@ const deriveCategories = (baseCategories) =>
     ['all', 'tech', 'essay', 'study'].includes(category.slug),
   );
 
+const isSystemTag = (tag) => String(tag || '').startsWith('__wray_');
+
 const deriveTags = (posts, fallbackTags) => {
-  const tags = Array.from(new Set(posts.flatMap((post) => post.tags || [])));
+  const tags = Array.from(new Set(posts.flatMap((post) => post.tags || []).filter((tag) => !isSystemTag(tag))));
   return tags.length ? tags : fallbackTags;
 };
 

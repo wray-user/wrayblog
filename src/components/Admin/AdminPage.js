@@ -298,7 +298,7 @@ const postToForm = (post) => ({
   category: post.category || CATEGORY_OPTIONS[1].name,
   categorySlug: post.categorySlug || CATEGORY_OPTIONS[1].slug,
   techTopic: post.techTopic || post.subcategory || TECH_TOPIC_OPTIONS[0],
-  techKind: normalizeTechKind(post.techKind),
+  techKind: normalizeTechKind(post.techKind || post.techType || post.articleType),
   noteOrder: Number(post.noteOrder) || 0,
   tagsText: Array.isArray(post.tags) ? post.tags.join(', ') : '',
   content: contentToMarkdown(post.content),
@@ -554,13 +554,15 @@ const AdminPage = () => {
     return `${label.allPosts}\uff1a${filteredPosts.length}`;
   }, [filteredPosts.length, listFilter]);
 
-  const loadPosts = async (nextToken = token) => {
+  const loadPosts = async (nextToken = token, options = {}) => {
     if (!nextToken) {
       return;
     }
 
     setIsLoading(true);
-    setStatus(label.loading);
+    if (!options.silent) {
+      setStatus(label.loading);
+    }
 
     try {
       const [items, records] = await Promise.all([
@@ -569,7 +571,9 @@ const AdminPage = () => {
       ]);
       setPosts(items);
       setStudyRecords(records);
-      setStatus(`${label.loaded} ${items.length + records.length} ${label.articles}`);
+      if (!options.silent) {
+        setStatus(`${label.loaded} ${items.length + records.length} ${label.articles}`);
+      }
     } catch (error) {
       setStatus(error.message);
       if (error.message === 'Unauthorized') {
@@ -632,6 +636,13 @@ const AdminPage = () => {
     };
 
     const handleKeyDown = (event) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') {
+        event.preventDefault();
+        event.stopPropagation();
+        saveMarkdownDraft(false);
+        return;
+      }
+
       if (event.key === 'Escape') {
         closeMarkdownFullscreen();
       }
@@ -1004,8 +1015,8 @@ const AdminPage = () => {
           studyMedia: payload.media,
           tagsText: current.tagsText,
         }));
+        await loadPosts(token, { silent: true });
         setStatus(shouldPublish ? label.recordPublished : label.recordSaved);
-        await loadPosts(token);
         return true;
       } catch (error) {
         setStatus(error.message);
@@ -1020,7 +1031,9 @@ const AdminPage = () => {
       return false;
     }
 
-    if (editingSlug && shouldPublish && !nextHistoryMessage.trim()) {
+    const shouldAskHistory = editingSlug && editingKind === 'post' && form.published !== false;
+
+    if (shouldAskHistory && shouldPublish && !nextHistoryMessage.trim()) {
       setStatus(label.historyRequired);
       return false;
     }
@@ -1036,7 +1049,7 @@ const AdminPage = () => {
         readTime: estimateReadTime(form.content),
         views: editingSlug ? Number(form.views) || 0 : 0,
         published: shouldPublish,
-        ...(editingSlug && shouldPublish ? { historyMessage: nextHistoryMessage.trim() } : {}),
+        ...(shouldAskHistory && shouldPublish ? { historyMessage: nextHistoryMessage.trim() } : {}),
       };
 
       if (editingSlug) {
@@ -1048,8 +1061,8 @@ const AdminPage = () => {
 
       setForm((current) => ({ ...current, ...payload, tagsText: current.tagsText }));
       setHistoryMessage('');
+      await loadPosts(token, { silent: true });
       setStatus(shouldPublish ? label.publishedDone : label.draftDone);
-      await loadPosts(token);
       return true;
     } catch (error) {
       setStatus(error.message);
@@ -1065,7 +1078,7 @@ const AdminPage = () => {
   };
 
   const handlePublishClick = () => {
-    if (editingSlug && form.categorySlug !== 'study') {
+    if (editingSlug && editingKind === 'post' && form.categorySlug !== 'study' && form.published !== false) {
       setHistoryMessage('');
       setIsHistoryDialogOpen(true);
       return;
@@ -1106,7 +1119,7 @@ const AdminPage = () => {
       if (editingSlug === post.slug) {
         handleNewPost();
       }
-      await loadPosts(token);
+      await loadPosts(token, { silent: true });
       setStatus(label.deleted);
     } catch (error) {
       setStatus(error.message);

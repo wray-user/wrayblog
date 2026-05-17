@@ -103,13 +103,13 @@ const normalizeTechKind = (value) =>
     ? 'note'
     : 'question';
 
-const getPostTechKind = (post) => normalizeTechKind(post?.techKind);
+const getPostTechKind = (post) => normalizeTechKind(post?.techKind || post?.techType || post?.articleType);
 
 const sortTechPostsByKind = (posts, kind) =>
   [...posts].sort((a, b) => {
     if (kind === 'note') {
-      const orderA = Number.isFinite(Number(a.noteOrder)) ? Number(a.noteOrder) : 0;
-      const orderB = Number.isFinite(Number(b.noteOrder)) ? Number(b.noteOrder) : 0;
+      const orderA = Number.isFinite(Number(a.noteOrder)) ? Number(a.noteOrder) : Number.MAX_SAFE_INTEGER;
+      const orderB = Number.isFinite(Number(b.noteOrder)) ? Number(b.noteOrder) : Number.MAX_SAFE_INTEGER;
 
       if (orderA !== orderB) {
         return orderA - orderB;

@@ -322,6 +322,23 @@ const normalizeTechKind = (value) => {
   return text === 'note' || text === '笔记' ? 'note' : 'question';
 };
 
+const TECH_KIND_TAG_PREFIX = '__wray_tech_kind:';
+const NOTE_ORDER_TAG_PREFIX = '__wray_note_order:';
+const isSystemTag = (tag) => String(tag || '').startsWith('__wray_');
+const withTechSystemTags = (tags, categorySlug, techKind, noteOrder) => {
+  const cleanTags = (Array.isArray(tags) ? tags : []).filter((tag) => tag && !isSystemTag(tag));
+
+  if (categorySlug !== 'tech') {
+    return cleanTags;
+  }
+
+  return [
+    ...cleanTags,
+    `${TECH_KIND_TAG_PREFIX}${techKind}`,
+    ...(techKind === 'note' ? [`${NOTE_ORDER_TAG_PREFIX}${Number(noteOrder) || 0}`] : []),
+  ];
+};
+
 const normalizeAgentPostBody = (body) => {
   const categorySlug = String(body.categorySlug || body.type || 'essay').trim();
 
@@ -364,25 +381,33 @@ const redactPrivatePost = (post) => {
   };
 };
 
-const normalizePostInput = (body) => ({
-  title: body.title,
-  slug: body.slug,
-  excerpt: createExcerpt(body.content),
-  content: body.content,
-  category: body.category,
-  categorySlug: body.categorySlug,
-  techTopic: body.categorySlug === 'tech' ? body.techTopic || 'Python' : '',
-  techKind: body.categorySlug === 'tech' ? normalizeTechKind(body.techKind || body.techType || body.articleType) : 'question',
-  noteOrder: body.categorySlug === 'tech' ? Number(body.noteOrder) || 0 : 0,
-  tags: Array.isArray(body.tags) ? body.tags : [],
-  image: body.image,
-  videos: Array.isArray(body.videos) ? body.videos : [],
-  readTime: body.readTime,
-  date: body.date,
-  views: Number(body.views) || 0,
-  published: body.published !== false,
-  visibility: body.visibility === 'private' ? 'private' : 'public',
-});
+const normalizePostInput = (body) => {
+  const categorySlug = body.categorySlug;
+  const techKind = categorySlug === 'tech'
+    ? normalizeTechKind(body.techKind || body.techType || body.articleType)
+    : 'question';
+  const noteOrder = categorySlug === 'tech' && techKind === 'note' ? Number(body.noteOrder) || 0 : 0;
+
+  return {
+    title: body.title,
+    slug: body.slug,
+    excerpt: createExcerpt(body.content),
+    content: body.content,
+    category: body.category,
+    categorySlug,
+    techTopic: categorySlug === 'tech' ? body.techTopic || 'Python' : '',
+    techKind,
+    noteOrder,
+    tags: withTechSystemTags(Array.isArray(body.tags) ? body.tags : [], categorySlug, techKind, noteOrder),
+    image: body.image,
+    videos: Array.isArray(body.videos) ? body.videos : [],
+    readTime: body.readTime,
+    date: body.date,
+    views: Number(body.views) || 0,
+    published: body.published !== false,
+    visibility: body.visibility === 'private' ? 'private' : 'public',
+  };
+};
 
 const normalizeStudyTopics = (topics) => {
   if (!Array.isArray(topics)) {

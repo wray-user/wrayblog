@@ -1,0 +1,19 @@
+.background {
+    /* 清除默认边距 */
+    margin: 0;
+    padding: 0;
+    /* 占满整个屏幕 */
+    width: 100%;
+    height: 100%;
+    /* 固定定位，防止滚动时背景移动 */
+    position: absolute;
+    top: 560px;
+    left: 0;
+    /* 背景图核心样式 */
+    background-image: url(/public/img/Twinkle.jpg); /* 修正路径：public是根，直接写/img/ */
+    background-size: cover; /* 铺满容器，保持比例 */
+    background-position: center; /* 背景图居中 */
+    background-repeat: no-repeat; /* 不重复 */
+    /* 层级：确保背景在最下层，不遮挡内容 */
+    z-index: -1;
+}

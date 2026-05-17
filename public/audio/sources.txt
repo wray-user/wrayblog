@@ -1,0 +1,13 @@
+Temporary local tracks for the floating music player.
+
+Source page:
+https://filesamples.com/formats/mp3
+
+Downloaded files:
+- sample1.mp3
+- sample3.mp3
+- sample4.mp3
+
+These are placeholder sample MP3 files. Replace them with database-backed
+music records later by updating the playlist data in MusicPlayer.js or by
+loading the same fields from an API.

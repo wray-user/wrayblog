@@ -1,1 +1,6 @@
 /node_modules
+/build
+/.npm-cache
+*.log
+.env
+construct.txt

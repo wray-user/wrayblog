@@ -1,0 +1,260 @@
+.player {
+  position: fixed;
+  z-index: 1600;
+  width: 322px;
+  min-height: 96px;
+  padding: 12px 12px 10px;
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) 94px;
+  grid-template-rows: auto auto;
+  gap: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: rgba(34, 34, 34, 0.94);
+  color: #f4f7fb;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(16px);
+  user-select: none;
+  touch-action: none;
+  transition:
+    left 0.2s ease,
+    right 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.left {
+  left: 10px;
+}
+
+.right {
+  right: 10px;
+}
+
+.dragging {
+  transition: none;
+}
+
+.collapsed {
+  width: 42px;
+  min-height: 72px;
+  padding: 0;
+  display: block;
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.collapsed.left {
+  left: 0;
+  transform: translateX(-16px);
+}
+
+.collapsed.right {
+  right: 0;
+  transform: translateX(16px);
+}
+
+.edgeTab {
+  width: 100%;
+  height: 72px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: rgba(34, 34, 34, 0.96);
+  color: #f4f7fb;
+  cursor: pointer;
+}
+
+.edgeTab svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cover {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  width: 54px;
+  height: 54px;
+  align-self: start;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  grid-column: 2;
+  min-width: 0;
+  cursor: grab;
+}
+
+.dragging .info {
+  cursor: grabbing;
+}
+
+.info h3 {
+  margin: 1px 0 3px;
+  overflow: hidden;
+  color: #f8fafc;
+  font-size: 0.85rem;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.info p {
+  margin: 0;
+  overflow: hidden;
+  color: #b8c1cf;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.controls {
+  grid-column: 3;
+  display: grid;
+  grid-template-columns: repeat(3, 28px);
+  justify-content: end;
+  align-items: center;
+  gap: 4px;
+}
+
+.controls button,
+.footerTools button {
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+.controls button {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.controls .playButton {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.controls svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.progressRow {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 30px;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+  color: #aeb8c6;
+  font-size: 0.58rem;
+}
+
+.progressRow input,
+.footerTools input {
+  width: 100%;
+  height: 4px;
+  accent-color: #ef476f;
+  cursor: pointer;
+}
+
+.footerTools {
+  grid-column: 2 / 4;
+  display: grid;
+  grid-template-columns: auto 84px;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+  color: #aeb8c6;
+  font-size: 0.62rem;
+}
+
+.volumeLabel {
+  color: #d8dee8;
+  font-size: 0.62rem;
+  white-space: nowrap;
+}
+
+.footerTools button {
+  padding: 0;
+  background: transparent;
+  color: #d8dee8;
+  font-size: 0.62rem;
+}
+
+.controls button:hover,
+.footerTools button:hover,
+.edgeTab:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+@media (max-width: 640px) {
+  .player {
+    width: min(322px, calc(100vw - 20px));
+    grid-template-columns: 48px minmax(0, 1fr) 88px;
+    padding: 10px;
+  }
+
+  .cover {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 380px) {
+  .player {
+    grid-template-columns: 44px minmax(0, 1fr) 82px;
+    gap: 7px 8px;
+  }
+
+  .cover {
+    width: 44px;
+    height: 44px;
+  }
+
+  .controls {
+    grid-template-columns: repeat(3, 26px);
+    gap: 3px;
+  }
+
+  .controls button {
+    width: 26px;
+    height: 26px;
+  }
+
+  .footerTools {
+    grid-template-columns: auto minmax(64px, 1fr);
+    gap: 8px;
+  }
+
+  .info h3 {
+    font-size: 0.8rem;
+  }
+}

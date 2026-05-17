@@ -1,0 +1,1796 @@
+.adminPage,
+.loginPage {
+  min-height: 100vh;
+  background: #f3f5f8;
+  color: #172033;
+}
+
+.loginPage {
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background: #f1f3f6;
+}
+
+.loginCard,
+.postPanel,
+.editorPanel {
+  border: 1px solid #dce3ee;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 14px 32px rgba(18, 33, 57, 0.08);
+}
+
+.loginCard {
+  width: min(456px, 100%);
+  display: grid;
+  gap: 18px;
+  padding: 28px 26px;
+}
+
+.loginLogo {
+  margin: 0 0 14px;
+  color: #0b57d0;
+  text-align: center;
+  font-size: 2.4rem;
+  letter-spacing: 0;
+}
+
+.loginBackLink {
+  justify-self: center;
+  color: #354257;
+  text-decoration: none;
+}
+
+.loginCard h1,
+.adminHeader h1,
+.editorHeader h2 {
+  margin: 0;
+}
+
+.kicker {
+  margin: 0 0 6px;
+  color: #5e6b80;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.loginCard label,
+.formGrid label,
+.fullField,
+.mediaControls label,
+.markdownArea label,
+.markdownAreaFullscreen label {
+  display: grid;
+  gap: 8px;
+  color: #354257;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.loginCard input,
+.formGrid input,
+.formGrid select,
+.fullField textarea,
+.mediaControls input,
+.markdownArea textarea,
+.markdownAreaFullscreen textarea,
+.accountPanel input,
+.accountPanel textarea,
+.passwordGroup input,
+.tableDialog input {
+  width: 100%;
+  border: 1px solid #cfd8e6;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+  outline: none;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.loginCard input,
+.formGrid input,
+.formGrid select,
+.mediaControls input,
+.accountPanel input,
+.passwordGroup input,
+.tableDialog input {
+  height: 42px;
+  padding: 0 12px;
+}
+
+.passwordField {
+  position: relative;
+  display: block;
+}
+
+.passwordField input {
+  padding-right: 46px;
+}
+
+.eyeButton {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #6a768a;
+  font-size: 1rem;
+}
+
+.loginCard .eyeButton {
+  min-height: 32px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #3f4652;
+}
+
+.loginCard .eyeButton:hover,
+.loginCard .eyeButton:focus-visible {
+  background: #eef2f8;
+  color: #172033;
+}
+
+.eyeButton svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.eyeButton circle {
+  fill: currentColor;
+  stroke: none;
+}
+
+.eyeSlash {
+  stroke-width: 1.9;
+}
+
+.fullField textarea {
+  min-height: 92px;
+  padding: 12px;
+  resize: vertical;
+}
+
+.markdownArea textarea {
+  min-height: 620px;
+  padding: 18px 20px;
+  border-color: rgba(207, 216, 230, 0.82);
+  border-radius: 10px;
+  background: #ffffff;
+  font-family: Consolas, Monaco, "Microsoft YaHei", "PingFang SC", monospace;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  resize: vertical;
+  white-space: pre-wrap;
+}
+
+.loginCard input:focus,
+.formGrid input:focus,
+.formGrid select:focus,
+.fullField textarea:focus,
+.mediaControls input:focus,
+.markdownArea textarea:focus,
+.markdownAreaFullscreen textarea:focus {
+  border-color: #3468d8;
+  box-shadow: 0 0 0 3px rgba(52, 104, 216, 0.14);
+}
+
+.loginCard button,
+.headerActions button,
+.editorActions button,
+.publishButton,
+.primaryButton,
+.ghostButton,
+.deleteButton,
+.fileButton,
+.videoItem button {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0 14px;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.loginCard button,
+.primaryButton {
+  background: #3468d8;
+  color: #ffffff;
+}
+
+.editorActions button {
+  background: #ffffff;
+  border-color: #cfd8e6;
+  color: #354257;
+}
+
+.editorActions .publishButton {
+  background: #3468d8;
+  border-color: #3468d8;
+  color: #ffffff;
+}
+
+.headerActions button,
+.ghostButton,
+.fileButton {
+  background: #ffffff;
+  border-color: #cfd8e6;
+  color: #354257;
+}
+
+.deleteButton,
+.videoItem button {
+  background: #fff2f0;
+  color: #bb2d1f;
+}
+
+.loginCard button:disabled,
+.editorActions button:disabled,
+.headerActions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.status,
+.notice {
+  margin: 0;
+  color: #5e6b80;
+}
+
+.adminPage {
+  padding: 28px;
+}
+
+.adminHeader {
+  width: min(1440px, 100%);
+  margin: 0 auto 18px;
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+}
+
+.backHomeLink {
+  width: fit-content;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #d7e2f3;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #354257;
+  padding: 0 12px 0 8px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.backHomeLink span {
+  font-size: 1.1rem;
+}
+
+.backHomeLink strong {
+  font-size: 0.84rem;
+}
+
+.summaryPanel {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.summaryCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.summaryCard,
+.summaryCardActive {
+  min-height: 58px;
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  border: 1px solid #d7e2f3;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #354257;
+  text-align: left;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.summaryCard strong,
+.summaryCardActive strong {
+  color: #172033;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.summaryCard span,
+.summaryCardActive span {
+  color: #6a768a;
+  font-size: 0.82rem;
+}
+
+.summaryCardActive {
+  border-color: #3468d8;
+  background: #eef5ff;
+}
+
+.publishedSearch {
+  display: grid;
+  grid-template-columns: auto minmax(180px, 1fr);
+  align-items: center;
+  gap: 10px;
+  color: #354257;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.publishedSearch input {
+  min-width: 0;
+  height: 38px;
+  border: 1px solid #cfd8e6;
+  border-radius: 8px;
+  padding: 0 12px;
+  font: inherit;
+  outline: none;
+}
+
+.publishedSearch input:focus {
+  border-color: #3468d8;
+  box-shadow: 0 0 0 3px rgba(52, 104, 216, 0.14);
+}
+
+.categorySummary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.categorySummaryButton,
+.categorySummaryActive {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #d7e2f3;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #354257;
+  padding: 0 10px;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.categorySummaryButton strong,
+.categorySummaryActive strong {
+  min-width: 22px;
+  min-height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #eef2f8;
+  color: #172033;
+  font-size: 0.78rem;
+}
+
+.categorySummaryActive {
+  border-color: #3468d8;
+  background: #eef5ff;
+  color: #234f9b;
+}
+
+.headerActions,
+.editorActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerActions > button {
+  display: none;
+}
+
+.currentUser {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 38px auto;
+  gap: 2px 10px;
+  align-items: center;
+  color: #354257;
+}
+
+.currentUser img {
+  grid-row: span 2;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.currentUser small {
+  color: #6a768a;
+}
+
+.themePicker,
+.accountMenu {
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+
+.iconButton {
+  width: 42px;
+  height: 42px;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #445167;
+  padding: 0;
+  cursor: pointer;
+}
+
+.iconButton svg,
+.themeOption svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.themeOption svg path[fill-rule],
+.themeOption svg path[clip-rule],
+.iconButton svg path[fill-rule],
+.iconButton svg path[clip-rule] {
+  fill: currentColor;
+  stroke: none;
+}
+
+.themeMenu,
+.accountDropdown {
+  position: absolute;
+  top: calc(100% - 1px);
+  right: 0;
+  z-index: 30;
+  min-width: 150px;
+  padding: 8px;
+  border: 1px solid #dce3ee;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 44px rgba(18, 33, 57, 0.14);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease;
+}
+
+.themeMenu::before,
+.accountDropdown::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 10px;
+}
+
+.themePicker:hover .themeMenu,
+.themePicker:focus-within .themeMenu,
+.accountMenu:hover .accountDropdown,
+.accountMenu:focus-within .accountDropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.themeOption,
+.accountDropdown button {
+  width: 100%;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #354257;
+  padding: 0 10px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.themeOption:hover,
+.accountDropdown button:hover {
+  background: #eef2f8;
+}
+
+.accountButton {
+  width: 78px;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  color: #5e6b80;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.accountButton img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.accountButton span {
+  max-width: 96px;
+  overflow: hidden;
+  font-size: 0.72rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.accountDropdown {
+  min-width: 188px;
+  background: #1f1f1f;
+  border-color: #2b55d9;
+  text-align: center;
+}
+
+.accountDropdown strong {
+  display: block;
+  padding: 10px;
+  color: #f8fafc;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.accountDropdown button {
+  justify-content: center;
+  color: #e5e7eb;
+  text-align: center;
+}
+
+.accountDropdown button:hover {
+  background: #2a2a2a;
+}
+
+.notice {
+  width: min(1440px, 100%);
+  margin: 0 auto 18px;
+  padding: 12px 14px;
+  border: 1px solid #d7e2f3;
+  border-radius: 8px;
+  background: #eef5ff;
+  color: #2a579f;
+}
+
+.adminLayout {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.postPanel {
+  position: sticky;
+  top: 20px;
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+}
+
+.profilePanel {
+  display: none;
+}
+
+.accountPanel {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid #e2e8f2;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.accountPanel h2 {
+  margin: 0;
+  color: #172033;
+  font-size: 1rem;
+}
+
+.accountPanel label {
+  display: grid;
+  gap: 6px;
+  color: #354257;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.accountPanel textarea {
+  min-height: 76px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+.accountPanel input:disabled {
+  background: #eef2f7;
+  color: #7a8596;
+  cursor: not-allowed;
+}
+
+.profileTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.avatarPicker {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  justify-self: center;
+  overflow: hidden;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  background: #101827;
+  cursor: pointer;
+}
+
+.avatarPicker img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.avatarPicker span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 2px;
+  background: rgba(15, 23, 42, 0.5);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.avatarPicker span strong {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.avatarPicker:hover span {
+  opacity: 1;
+}
+
+.passwordGroup {
+  display: grid;
+  gap: 8px;
+}
+
+.passwordGroup p {
+  margin: 0;
+  color: #354257;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.profileSaveButton,
+.logoutButton {
+  min-height: 38px;
+  border: 0;
+  border-radius: 8px;
+  background: #172033;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.logoutButton {
+  min-height: 32px;
+  background: #eef2f8;
+  color: #354257;
+  padding: 0 12px;
+}
+
+.postList {
+  display: grid;
+  gap: 10px;
+  max-height: calc(100vh - 170px);
+  overflow-y: auto;
+}
+
+.listMeta {
+  margin: 0;
+  color: #5e6b80;
+  font-weight: 700;
+}
+
+.emptyList {
+  margin: 0;
+  padding: 16px;
+  border: 1px dashed #cfd8e6;
+  border-radius: 8px;
+  color: #6a768a;
+  text-align: center;
+}
+
+.postItem,
+.postItemActive {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #e2e8f2;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.postItemActive {
+  border-color: #3468d8;
+  background: #f2f6ff;
+}
+
+.postItem button:first-child,
+.postItemActive button:first-child {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.postItem strong,
+.postItemActive strong {
+  overflow: hidden;
+  color: #172033;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.postItem span,
+.postItemActive span,
+.postItem small,
+.postItemActive small {
+  color: #6a768a;
+}
+
+.editorPanel {
+  display: grid;
+  gap: 18px;
+  padding: 20px;
+}
+
+.editorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #354257;
+  font-weight: 700;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) 180px 140px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.mediaPanel {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px;
+  border: 1px solid #e2e8f2;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.coverBox {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #dbe3ef;
+}
+
+.coverBox img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.mediaControls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.fileButton {
+  position: relative;
+  overflow: hidden;
+}
+
+.fileButton input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.videoList {
+  display: grid;
+  gap: 8px;
+}
+
+.videoItem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f2;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.videoItem span {
+  overflow: hidden;
+  color: #5e6b80;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.markdownArea {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.86fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.markdownAreaNoPreview {
+  grid-template-columns: minmax(0, 980px);
+  justify-content: center;
+}
+
+.studyEditor {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 18px;
+  align-items: start;
+}
+
+.studyFields {
+  display: grid;
+  gap: 16px;
+}
+
+.studyTopicPanel,
+.studyMediaPanel,
+.studyPreviewCard {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid #e2e8f2;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.studyTopicHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #172033;
+}
+
+.studyTopicHeader span {
+  color: #3468d8;
+  font-weight: 800;
+}
+
+.studyTopicRow {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.4fr) minmax(150px, 1fr) 130px auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.studyTopicRow button,
+.studyMediaList button {
+  min-height: 38px;
+  border: 1px solid #cfd8e6;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #354257;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.studySummaryInput {
+  min-height: 110px;
+}
+
+.studyMediaList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.studyMediaList figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #e2e8f2;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.studyMediaList img,
+.studyMediaList video {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  display: block;
+  object-fit: cover;
+  background: #dbe3ef;
+}
+
+.studyMediaList figcaption {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+}
+
+.studyMediaList figcaption span {
+  overflow: hidden;
+  color: #5e6b80;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studyPreviewCard {
+  position: sticky;
+  top: 18px;
+  background: #ffffff;
+}
+
+.studyPreviewCard > p:first-child {
+  margin: 0;
+  color: #6a768a;
+  font-weight: 800;
+}
+
+.studyPreviewCard header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #5e6b80;
+}
+
+.studyPreviewCard h3 {
+  margin: 0;
+  color: #172033;
+}
+
+.studyPreviewCard p {
+  margin: 0;
+  color: #354257;
+  line-height: 1.7;
+}
+
+.studyPreviewCard div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.studyPreviewCard div span {
+  border-radius: 999px;
+  background: #eef3ff;
+  color: #3468d8;
+  padding: 5px 9px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.markdownAreaFullscreen {
+  position: fixed;
+  inset: 18px;
+  z-index: 1200;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.86fr);
+  gap: 16px;
+  padding: 18px;
+  border-radius: 10px;
+  background: #f3f5f8;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.28);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.markdownAreaFullscreen.markdownAreaNoPreview {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.markdownAreaFullscreen textarea {
+  min-height: calc(100vh - 150px);
+  height: calc(100vh - 150px);
+  max-height: calc(100vh - 150px);
+  padding: 18px 20px;
+  border-radius: 10px;
+  font-family: Consolas, Monaco, "Microsoft YaHei", "PingFang SC", monospace;
+  font-size: 0.98rem;
+  line-height: 1.75;
+  resize: none;
+}
+
+.markdownToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 0 2px;
+}
+
+.markdownToolbar span {
+  margin-right: auto;
+  color: #172033;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.markdownToolbar button {
+  min-height: 32px;
+  border: 1px solid #cfd8e6;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #354257;
+  padding: 0 10px;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease;
+}
+
+.markdownToolbar select {
+  min-height: 32px;
+  border: 1px solid #cfd8e6;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #354257;
+  padding: 0 8px;
+  font: inherit;
+  font-size: 0.82rem;
+  outline: none;
+}
+
+.markdownToolbar button:hover,
+.markdownToolbar button:focus-visible,
+.markdownToolbar select:focus-visible {
+  border-color: #3468d8;
+  background: #eef3ff;
+  color: #2458bd;
+}
+
+.draftStatus {
+  margin: 0;
+  color: #5e6b80;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.preview {
+  min-height: 674px;
+  max-height: 674px;
+  padding: 18px;
+  border: 1px solid #e2e8f2;
+  border-radius: 8px;
+  background: #fbfcff;
+  color: #263348;
+  line-height: 1.85;
+  overflow: auto;
+}
+
+.markdownAreaFullscreen .preview {
+  min-height: calc(100vh - 36px);
+  max-height: calc(100vh - 36px);
+}
+
+.preview[data-preview-theme='github'] {
+  background: #ffffff;
+  color: #24292f;
+}
+
+.preview[data-preview-theme='cyanosis'] {
+  background: #f5fbfc;
+  color: #1f3f4a;
+}
+
+.preview[data-code-theme='github'] pre {
+  background: #f6f8fa;
+  color: #24292f;
+}
+
+.preview[data-code-theme='dark'] pre {
+  background: #101827;
+  color: #f8fafc;
+}
+
+.preview[data-code-theme='atom'] pre {
+  background: #282c34;
+  color: #e6edf3;
+}
+
+.previewTitle {
+  margin: 0 0 12px;
+  color: #6a768a;
+  font-weight: 700;
+}
+
+.preview h1,
+.preview h2,
+.preview h3 {
+  color: #172033;
+  line-height: 1.35;
+}
+
+.preview img,
+.preview video {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.preview pre {
+  max-height: 360px;
+  overflow: auto;
+  padding: 14px;
+  border-radius: 8px;
+  background: #101827;
+  color: #f8fafc;
+}
+
+.preview code {
+  border-radius: 5px;
+  background: #eef2f8;
+  color: #172033;
+  padding: 2px 5px;
+  font-family: Consolas, Monaco, monospace;
+}
+
+.preview pre code {
+  display: block;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  white-space: pre;
+}
+
+.preview :global(.markdown-table-wrap) {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.preview table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  margin: 14px 0;
+  border-radius: 8px;
+}
+
+.preview th,
+.preview td {
+  border: 1px solid #cfd8e6;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.preview th {
+  background: #dff0f6;
+  color: #172033;
+}
+
+.preview tr:nth-child(even) td {
+  background: #f2f8fb;
+}
+
+.dialogBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.38);
+}
+
+.accountSettingsPage {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  overflow: auto;
+  background: #f6f7f9;
+  color: #172033;
+}
+
+.accountSettingsHeader {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 max(28px, calc((100vw - 1200px) / 2));
+  background: #1f1f1f;
+  color: #ffffff;
+}
+
+.accountSettingsHeader div {
+  display: flex;
+  align-items: baseline;
+  gap: 26px;
+}
+
+.accountSettingsHeader h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 0;
+}
+
+.accountSettingsHeader span {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.accountSettingsHeader button {
+  min-height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: transparent;
+  color: #ffffff;
+  padding: 0 14px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.accountSettingsShell {
+  width: min(900px, calc(100% - 36px));
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.accountSettingsNav {
+  display: grid;
+  gap: 0;
+  padding-top: 6px;
+  color: #354257;
+  font-size: 1rem;
+}
+
+.accountSettingsNav span {
+  position: relative;
+  padding-left: 20px;
+}
+
+.accountSettingsNavActive::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  width: 4px;
+  height: 1.4em;
+  background: linear-gradient(180deg, #22d3ee, #3468d8);
+}
+
+.accountSettingsForm {
+  display: grid;
+  gap: 24px;
+  padding: 26px 0 40px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.accountSettingsForm label,
+.accountAvatarRow {
+  width: min(540px, calc(100% - 52px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
+  color: #7a8596;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.accountSettingsForm input,
+.accountSettingsForm textarea {
+  width: 100%;
+  border: 1px solid #d8dde7;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+}
+
+.accountSettingsForm input {
+  height: 44px;
+  padding: 0 12px;
+}
+
+.accountSettingsForm input:disabled {
+  background: #f3f5f8;
+  color: #8b95a5;
+}
+
+.accountSettingsForm textarea {
+  min-height: 112px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+.accountSettingsForm .passwordGroup {
+  width: min(540px, calc(100% - 52px));
+  margin: 0 auto;
+  grid-template-columns: 92px minmax(0, 1fr);
+}
+
+.accountSettingsForm .passwordGroup p {
+  margin-top: 10px;
+}
+
+.accountSettingsForm .passwordGroup input {
+  grid-column: 2;
+}
+
+.accountSettingsForm .passwordField {
+  grid-column: 2;
+  display: block;
+}
+
+.accountSettingsForm .passwordField input {
+  padding-right: 46px;
+}
+
+.accountSettingsForm .eyeButton {
+  right: 8px;
+}
+
+.accountSettingsActions {
+  width: min(540px, calc(100% - 52px));
+  margin: 0 auto;
+  display: flex;
+  gap: 12px;
+  padding-left: 112px;
+}
+
+.accountSettingsActions button {
+  min-width: 84px;
+  min-height: 38px;
+  border: 0;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: #172033;
+  font: inherit;
+  cursor: pointer;
+}
+
+.accountSettingsActions button:first-child {
+  background: #3468d8;
+  color: #ffffff;
+}
+
+.dialog {
+  width: min(380px, 100%);
+  padding: 26px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 26px 80px rgba(15, 23, 42, 0.28);
+  text-align: center;
+}
+
+.tableDialog {
+  width: min(460px, 100%);
+  padding: 24px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 26px 80px rgba(15, 23, 42, 0.28);
+}
+
+.tableDialog h2 {
+  margin: 0 0 22px;
+  color: #172033;
+  font-size: 1.2rem;
+}
+
+.tableDialogGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.tableDialogGrid label {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  color: #354257;
+}
+
+.tableDialogActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.mediaDialogHint {
+  align-self: center;
+  color: #6a768a;
+  font-size: 0.9rem;
+}
+
+.tableDialogActions button {
+  min-width: 88px;
+  min-height: 38px;
+  border: 0;
+  border-radius: 0;
+  background: #e5e7eb;
+  color: #354257;
+  font: inherit;
+  cursor: pointer;
+}
+
+.tableDialogActions button:last-child {
+  background: #3b8bd8;
+  color: #ffffff;
+}
+
+.historyCommitDialog {
+  width: min(480px, 100%);
+  display: grid;
+  gap: 18px;
+  padding: 26px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 26px 80px rgba(15, 23, 42, 0.28);
+}
+
+.historyCommitDialog h2 {
+  margin: 0;
+  color: #172033;
+  font-size: 1.24rem;
+}
+
+.historyCommitDialog p {
+  margin: 0;
+  color: #5e6b80;
+  line-height: 1.7;
+}
+
+.historyCommitDialog label {
+  display: grid;
+  gap: 8px;
+  color: #354257;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.historyCommitDialog input {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #cfd8e6;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #172033;
+  padding: 0 12px;
+  font: inherit;
+  outline: none;
+}
+
+.historyCommitDialog input:focus {
+  border-color: #3468d8;
+  box-shadow: 0 0 0 3px rgba(52, 104, 216, 0.14);
+}
+
+.historyCommitActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.historyCommitActions button {
+  min-width: 96px;
+  min-height: 40px;
+  border: 0;
+  border-radius: 8px;
+  padding: 0 16px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.historyCommitActions button:first-child {
+  background: #e5e7eb;
+  color: #354257;
+}
+
+.historyCommitActions button:last-child {
+  background: #3468d8;
+  color: #ffffff;
+}
+
+.historyCommitActions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.dialog h2 {
+  margin: 0 0 10px;
+  color: #172033;
+}
+
+.dialog p {
+  margin: 0 0 22px;
+  color: #5e6b80;
+  line-height: 1.7;
+}
+
+.dialog button {
+  min-width: 120px;
+  min-height: 42px;
+  border: 0;
+  border-radius: 8px;
+  background: #3468d8;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+:global(html[data-theme='dark']) .adminPage,
+:global(html[data-theme='dark']) .loginPage {
+  background: #0d1117;
+  color: #e5edf8;
+}
+
+:global(html[data-theme='dark']) .loginCard,
+:global(html[data-theme='dark']) .postPanel,
+:global(html[data-theme='dark']) .editorPanel,
+:global(html[data-theme='dark']) .summaryCard,
+:global(html[data-theme='dark']) .profilePanel,
+:global(html[data-theme='dark']) .accountPanel,
+:global(html[data-theme='dark']) .tableDialog,
+:global(html[data-theme='dark']) .preview,
+:global(html[data-theme='dark']) .markdownAreaFullscreen,
+:global(html[data-theme='dark']) .mediaPanel {
+  background: #161b22;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e5edf8;
+}
+
+:global(html[data-theme='dark']) .loginCard input,
+:global(html[data-theme='dark']) .formGrid input,
+:global(html[data-theme='dark']) .formGrid select,
+:global(html[data-theme='dark']) .mediaControls input,
+:global(html[data-theme='dark']) .markdownArea textarea,
+:global(html[data-theme='dark']) .markdownAreaFullscreen textarea,
+:global(html[data-theme='dark']) .profilePanel input,
+:global(html[data-theme='dark']) .accountPanel input,
+:global(html[data-theme='dark']) .accountPanel textarea,
+:global(html[data-theme='dark']) .passwordGroup input,
+:global(html[data-theme='dark']) .tableDialog input {
+  background: #0d1117;
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #e5edf8;
+}
+
+:global(html[data-theme='dark']) .editorHeader h2,
+:global(html[data-theme='dark']) .adminHeader h1,
+:global(html[data-theme='dark']) .profilePanel h2,
+:global(html[data-theme='dark']) .accountPanel h2,
+:global(html[data-theme='dark']) .tableDialog h2,
+:global(html[data-theme='dark']) .preview h1,
+:global(html[data-theme='dark']) .preview h2,
+:global(html[data-theme='dark']) .preview h3 {
+  color: #f8fafc;
+}
+
+:global(html[data-theme='dark']) .summaryCard span,
+:global(html[data-theme='dark']) .kicker,
+:global(html[data-theme='dark']) .status,
+:global(html[data-theme='dark']) .listMeta,
+:global(html[data-theme='dark']) .currentUser small {
+  color: #a8b3c4;
+}
+
+:global(html[data-theme='dark']) .summaryCard strong,
+:global(html[data-theme='dark']) .summaryCardActive strong,
+:global(html[data-theme='dark']) .postItem strong,
+:global(html[data-theme='dark']) .postItemActive strong {
+  color: #f8fafc;
+}
+
+:global(html[data-theme='dark']) .summaryCardActive,
+:global(html[data-theme='dark']) .postItemActive {
+  background: rgba(52, 104, 216, 0.18);
+}
+
+:global(html[data-theme='dark']) .postItem,
+:global(html[data-theme='dark']) .postItemActive,
+:global(html[data-theme='dark']) .categorySummaryButton,
+:global(html[data-theme='dark']) .categorySummaryActive,
+:global(html[data-theme='dark']) .themeSwitch,
+:global(html[data-theme='dark']) .logoutButton,
+:global(html[data-theme='dark']) .markdownToolbar button,
+:global(html[data-theme='dark']) .markdownToolbar select {
+  background: #0d1117;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #d2d8e2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(html:not([data-theme])) .adminPage,
+  :global(html:not([data-theme])) .loginPage {
+    background: #0d1117;
+    color: #e5edf8;
+  }
+
+  :global(html:not([data-theme])) .loginCard,
+  :global(html:not([data-theme])) .postPanel,
+  :global(html:not([data-theme])) .editorPanel,
+  :global(html:not([data-theme])) .summaryCard,
+  :global(html:not([data-theme])) .profilePanel,
+  :global(html:not([data-theme])) .accountPanel,
+  :global(html:not([data-theme])) .tableDialog,
+  :global(html:not([data-theme])) .preview,
+  :global(html:not([data-theme])) .mediaPanel {
+    background: #161b22;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #e5edf8;
+  }
+}
+
+@media (max-width: 1100px) {
+  .adminLayout,
+  .markdownArea,
+  .studyEditor {
+    grid-template-columns: 1fr;
+  }
+
+  .adminHeader {
+    grid-template-columns: 1fr;
+  }
+
+  .postPanel {
+    position: static;
+  }
+
+  .postList {
+    max-height: none;
+  }
+
+  .formGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .studyPreviewCard {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .adminPage {
+    padding: 16px;
+  }
+
+  .editorHeader,
+  .mediaPanel,
+  .mediaControls {
+    grid-template-columns: 1fr;
+  }
+
+  .editorHeader {
+    display: grid;
+  }
+
+  .summaryCards,
+  .publishedSearch {
+    grid-template-columns: 1fr;
+  }
+
+  .headerActions,
+  .editorActions {
+    flex-wrap: wrap;
+  }
+
+  .markdownAreaFullscreen {
+    inset: 8px;
+    grid-template-columns: 1fr;
+    overflow: auto;
+  }
+
+  .formGrid,
+  .mediaPanel,
+  .mediaControls,
+  .studyTopicRow {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .formGrid label:nth-child(n) {
+    grid-column: span 1;
+  }
+}

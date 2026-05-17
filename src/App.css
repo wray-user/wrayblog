@@ -1,38 +1,67 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html[data-theme='dark'] {
+  color-scheme: dark;
 }
 
-.App-header {
-  background-color: #282c34;
+body {
+  margin: 0;
+  background: #f6efe7;
+  color: #2f241b;
+  overflow-x: hidden;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+html[data-theme='dark'] body {
+  background: #0d0e0f;
+  color: #f5f1eb;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+#root,
+#App {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.appShell {
+  min-height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+html[data-theme='dark'] .appShell {
+  background: #0d0e0f;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    color-scheme: dark;
   }
-  to {
-    transform: rotate(360deg);
+
+  html:not([data-theme]) body,
+  html:not([data-theme]) .appShell {
+    background: #0d0e0f;
+    color: #f5f1eb;
   }
 }

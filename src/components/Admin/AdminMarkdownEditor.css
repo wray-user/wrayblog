@@ -1,0 +1,59 @@
+/* Admin Markdown editor overrides for md-editor-rt. */
+
+.wray-md-editor-area {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.wray-md-editor {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.wray-md-editor .md-editor {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.wray-md-editor .md-editor-content,
+.wray-md-editor .md-editor-content-wrapper {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.wray-md-editor .md-editor-input-wrapper,
+.wray-md-editor .md-editor-preview-wrapper {
+  min-width: 0 !important;
+}
+
+.wray-md-editor .cm-editor {
+  width: 100% !important;
+}
+
+.wray-md-editor .md-editor-preview .markdown-blank-line {
+  height: 1.35em;
+}
+
+.wray-md-editor .md-editor-preview {
+  tab-size: 4;
+}
+
+.wray-md-editor .md-editor-preview :where(
+  p,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  blockquote,
+  td,
+  th,
+  dd,
+  dt
+) {
+  tab-size: 4;
+  white-space: break-spaces;
+}
